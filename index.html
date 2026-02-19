@@ -6,6 +6,7 @@
 <title>Swaraj Vikas Gade | Civil Engineer</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 *{
@@ -19,6 +20,7 @@
 body{
     background:#0f172a;
     color:white;
+    overflow-x:hidden;
 }
 
 /* NAVBAR */
@@ -28,15 +30,14 @@ nav{
     top:0;
     display:flex;
     justify-content:space-between;
+    align-items:center;
     padding:20px 8%;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(20px);
     z-index:1000;
 }
 
-nav h2{
-    font-weight:600;
-}
+nav h2{font-weight:600;}
 
 nav ul{
     display:flex;
@@ -47,7 +48,6 @@ nav ul{
 nav a{
     text-decoration:none;
     color:white;
-    font-weight:400;
     transition:0.3s;
 }
 
@@ -97,7 +97,7 @@ nav a:hover{
     transform:scale(1.05);
 }
 
-/* GLASS SECTION */
+/* GLASS SECTIONS */
 section{
     padding:100px 10%;
 }
@@ -107,7 +107,7 @@ section{
     border-radius:20px;
     padding:40px;
     backdrop-filter:blur(20px);
-    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
     margin-bottom:60px;
     opacity:0;
     transform:translateY(50px);
@@ -156,14 +156,86 @@ section{
     transform:scale(1.05);
 }
 
-/* CONTACT */
-.contact{
-    text-align:center;
+/* CONTACT ICONS */
+.contact-icons{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    flex-wrap:wrap;
 }
 
-.contact a{
-    color:#38bdf8;
+.icon{
+    position:relative;
+    width:80px;
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    color:white;
     text-decoration:none;
+    transition:0.4s;
+    transform-style:preserve-3d;
+}
+
+/* 3D Reflection Effect */
+.icon::after{
+    content:"";
+    position:absolute;
+    top:10%;
+    left:15%;
+    width:50%;
+    height:30%;
+    background:rgba(255,255,255,0.25);
+    border-radius:50%;
+    filter:blur(8px);
+    transform:rotate(25deg);
+}
+
+/* Rotating Glow Ring */
+.icon::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    border:2px solid transparent;
+    animation:rotate 4s linear infinite;
+}
+
+@keyframes rotate{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+/* Brand Colors */
+.phone::before{
+    border-top:2px solid #38bdf8;
+    border-right:2px solid #38bdf8;
+}
+
+.whatsapp::before{
+    border-top:2px solid #25D366;
+    border-right:2px solid #25D366;
+}
+
+.gmail::before{
+    border-top:2px solid #EA4335;
+    border-right:2px solid #EA4335;
+}
+
+.linkedin::before{
+    border-top:2px solid #0A66C2;
+    border-right:2px solid #0A66C2;
+}
+
+.icon:hover{
+    transform:rotateY(15deg) rotateX(10deg) scale(1.15);
+    box-shadow:0 0 30px rgba(255,255,255,0.4);
 }
 
 /* FOOTER */
@@ -208,10 +280,8 @@ footer{
             <img src="https://i.ibb.co/fzDzYpDF/798095-DE-7-E1-F-4385-9-E59-3382-BF37015-D.png">
             <p>
             Diploma in Civil Engineering graduate and currently pursuing Bachelor of Engineering 
-            at DY Patil School of Engineering, Pune (SPPU). 
-            I am a disciplined and fast learner focused on precision, structural understanding 
-            and practical site execution. I constantly explore new engineering ideas and tools 
-            to strengthen my technical skills.
+            at DY Patil School of Engineering, Pune (SPPU). Focused on structural understanding,
+            site execution and continuous technical improvement.
             </p>
         </div>
     </div>
@@ -228,10 +298,9 @@ footer{
 
 <section id="experience">
     <div class="glass">
-        <h2 class="section-title">Internship Experience</h2>
+        <h2 class="section-title">Internship</h2>
         <p><strong>Site Engineer Intern – Bhoomi Consultants, Ahilyanagar</strong></p>
-        <p>1.5 Months Internship (Through College)</p>
-        <p>Worked on site supervision, drawing interpretation, measurement verification and coordination.</p>
+        <p>1.5 Months – Site supervision, drawing study and coordination.</p>
     </div>
 </section>
 
@@ -248,11 +317,15 @@ footer{
 </section>
 
 <section id="contact">
-    <div class="glass contact">
+    <div class="glass">
         <h2 class="section-title">Contact</h2>
-        <p>Email: <a href="mailto:swarajgade58@gmail.com">swarajgade58@gmail.com</a></p>
-        <p>Phone: +91 8177918199</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/swaraj-gade-4481b83a5" target="_blank">View Profile</a></p>
+
+        <div class="contact-icons">
+            <a href="tel:+918177918199" class="icon phone"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/918177918199" target="_blank" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:swarajgade58@gmail.com" class="icon gmail"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/swaraj-gade-4481b83a5" target="_blank" class="icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+        </div>
     </div>
 </section>
 
@@ -262,7 +335,6 @@ footer{
 
 <script>
 const sections = document.querySelectorAll('.glass');
-
 window.addEventListener('scroll', () => {
     sections.forEach(section => {
         const sectionTop = section.getBoundingClientRect().top;
