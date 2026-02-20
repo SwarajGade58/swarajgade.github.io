@@ -31,23 +31,27 @@ nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px 8%;
+    padding:22px 10%;
     background:rgba(255,255,255,0.06);
     backdrop-filter:blur(20px);
     z-index:1000;
 }
 
-nav h2{font-weight:600;}
+nav h2{
+    font-weight:600;
+    letter-spacing:1px;
+}
 
 nav ul{
     display:flex;
     list-style:none;
-    gap:25px;
+    gap:30px;
 }
 
 nav a{
     text-decoration:none;
     color:white;
+    font-weight:500;
     transition:0.3s;
 }
 
@@ -58,7 +62,7 @@ nav a:hover{
 /* HERO */
 .hero{
     height:100vh;
-    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
     url('https://images.unsplash.com/photo-1503387762-592deb58ef4e');
     background-size:cover;
     background-position:center;
@@ -71,46 +75,48 @@ nav a:hover{
 }
 
 .hero h1{
-    font-size:55px;
+    font-size:60px;
     font-weight:700;
+    letter-spacing:1px;
 }
 
-.hero p{
-    font-size:20px;
+.hero .typing{
     margin-top:15px;
-    color:#cbd5e1;
+    font-size:22px;
+    color:#38bdf8;
+    height:30px;
 }
 
 .hero button{
-    margin-top:30px;
-    padding:12px 35px;
+    margin-top:35px;
+    padding:14px 40px;
     border:none;
     background:#38bdf8;
     color:black;
     font-weight:600;
-    border-radius:30px;
+    border-radius:40px;
     cursor:pointer;
     transition:0.3s;
 }
 
 .hero button:hover{
-    transform:scale(1.05);
+    transform:scale(1.08);
 }
 
-/* GLASS SECTIONS */
+/* SECTIONS */
 section{
-    padding:100px 10%;
+    padding:120px 12%;
 }
 
 .glass{
-    background:rgba(255,255,255,0.08);
+    background:rgba(255,255,255,0.07);
     border-radius:20px;
-    padding:40px;
-    backdrop-filter:blur(20px);
-    box-shadow:0 10px 40px rgba(0,0,0,0.4);
-    margin-bottom:60px;
+    padding:50px;
+    backdrop-filter:blur(25px);
+    box-shadow:0 0 40px rgba(56,189,248,0.15);
+    margin-bottom:80px;
     opacity:0;
-    transform:translateY(50px);
+    transform:translateY(60px);
     transition:all 1s ease;
 }
 
@@ -120,8 +126,8 @@ section{
 }
 
 .section-title{
-    font-size:30px;
-    margin-bottom:25px;
+    font-size:32px;
+    margin-bottom:30px;
     border-left:4px solid #38bdf8;
     padding-left:15px;
 }
@@ -129,81 +135,78 @@ section{
 /* ABOUT */
 .about{
     display:flex;
-    gap:40px;
-    flex-wrap:wrap;
+    gap:50px;
     align-items:center;
 }
 
 .about img{
-    width:250px;
-    border-radius:15px;
+    width:260px;
+    border-radius:20px;
+    box-shadow:0 0 30px rgba(56,189,248,0.4);
 }
 
 /* PROJECTS */
 .projects{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
 }
 
 .projects img{
     width:100%;
-    border-radius:15px;
+    border-radius:20px;
     transition:0.4s;
 }
 
 .projects img:hover{
-    transform:scale(1.05);
+    transform:scale(1.07);
+    box-shadow:0 0 30px rgba(56,189,248,0.4);
 }
 
-/* CONTACT ICONS */
+/* CONTACT */
 .contact-icons{
     margin-top:40px;
     display:flex;
     justify-content:center;
-    gap:40px;
-    flex-wrap:wrap;
+    gap:25px;
 }
 
 .icon{
     position:relative;
-    width:80px;
-    height:80px;
+    width:60px;
+    height:60px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:30px;
+    font-size:22px;
     border-radius:50%;
     background:rgba(255,255,255,0.08);
     backdrop-filter:blur(20px);
     color:white;
     text-decoration:none;
     transition:0.4s;
-    transform-style:preserve-3d;
 }
 
-/* 3D Reflection Effect */
 .icon::after{
     content:"";
     position:absolute;
-    top:10%;
-    left:15%;
+    top:12%;
+    left:18%;
     width:50%;
     height:30%;
     background:rgba(255,255,255,0.25);
     border-radius:50%;
-    filter:blur(8px);
-    transform:rotate(25deg);
+    filter:blur(6px);
 }
 
-/* Rotating Glow Ring */
 .icon::before{
     content:"";
     position:absolute;
     width:100%;
     height:100%;
     border-radius:50%;
-    border:2px solid transparent;
+    border-top:2px solid #38bdf8;
+    border-right:2px solid #38bdf8;
     animation:rotate 4s linear infinite;
 }
 
@@ -212,30 +215,9 @@ section{
     100%{transform:rotate(360deg);}
 }
 
-/* Brand Colors */
-.phone::before{
-    border-top:2px solid #38bdf8;
-    border-right:2px solid #38bdf8;
-}
-
-.whatsapp::before{
-    border-top:2px solid #25D366;
-    border-right:2px solid #25D366;
-}
-
-.gmail::before{
-    border-top:2px solid #EA4335;
-    border-right:2px solid #EA4335;
-}
-
-.linkedin::before{
-    border-top:2px solid #0A66C2;
-    border-right:2px solid #0A66C2;
-}
-
 .icon:hover{
-    transform:rotateY(15deg) rotateX(10deg) scale(1.15);
-    box-shadow:0 0 30px rgba(255,255,255,0.4);
+    transform:scale(1.15);
+    box-shadow:0 0 25px rgba(56,189,248,0.6);
 }
 
 /* FOOTER */
@@ -245,19 +227,13 @@ footer{
     background:black;
     margin-top:50px;
 }
-
-/* MOBILE */
-@media(max-width:768px){
-    .hero h1{font-size:36px;}
-    nav ul{display:none;}
-}
 </style>
 </head>
 
 <body>
 
 <nav>
-    <h2>Swaraj Gade</h2>
+    <h2>Swaraj Vikas Gade</h2>
     <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#education">Education</a></li>
@@ -269,7 +245,7 @@ footer{
 
 <div class="hero">
     <h1>Swaraj Vikas Gade</h1>
-    <p>Designing Strong Foundations. Building a Better Tomorrow.</p>
+    <div class="typing" id="typing"></div>
     <button onclick="location.href='#about'">Explore Portfolio</button>
 </div>
 
@@ -279,9 +255,9 @@ footer{
         <div class="about">
             <img src="https://i.ibb.co/fzDzYpDF/798095-DE-7-E1-F-4385-9-E59-3382-BF37015-D.png">
             <p>
-            Diploma in Civil Engineering graduate and currently pursuing Bachelor of Engineering 
-            at DY Patil School of Engineering, Pune (SPPU). Focused on structural understanding,
-            site execution and continuous technical improvement.
+            Civil Engineer with Diploma background and currently pursuing Bachelor of Engineering 
+            at DY Patil School of Engineering, Pune (SPPU). Strong interest in structural understanding,
+            site execution, and continuous technical improvement. Quick learner with focus on quality work.
             </p>
         </div>
     </div>
@@ -290,8 +266,7 @@ footer{
 <section id="education">
     <div class="glass">
         <h2 class="section-title">Education</h2>
-        <p><strong>BE Civil Engineering</strong> – DY Patil School of Engineering, Pune (SPPU) – Pursuing</p>
-        <br>
+        <p><strong>BE Civil Engineering</strong> – DY Patil School of Engineering, Pune (SPPU) – Pursuing</p><br>
         <p><strong>Diploma in Civil Engineering</strong> – Completed</p>
     </div>
 </section>
@@ -319,30 +294,39 @@ footer{
 <section id="contact">
     <div class="glass">
         <h2 class="section-title">Contact</h2>
-
         <div class="contact-icons">
-            <a href="tel:+918177918199" class="icon phone"><i class="fas fa-phone"></i></a>
-            <a href="https://wa.me/918177918199" target="_blank" class="icon whatsapp"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:swarajgade58@gmail.com" class="icon gmail"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.linkedin.com/in/swaraj-gade-4481b83a5" target="_blank" class="icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+            <a href="tel:+918177918199" class="icon"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/918177918199" target="_blank" class="icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:swarajgade58@gmail.com" class="icon"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/swaraj-gade-4481b83a5" target="_blank" class="icon"><i class="fab fa-linkedin-in"></i></a>
         </div>
     </div>
 </section>
 
 <footer>
-©️ 2026 Swaraj Vikas Gade | Civil Engineering Portfolio
+©️ 2026 Swaraj Vikas Gade | Civil Engineer
 </footer>
 
 <script>
-const sections = document.querySelectorAll('.glass');
-window.addEventListener('scroll', () => {
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const triggerPoint = window.innerHeight - 100;
-        if(sectionTop < triggerPoint){
-            section.classList.add('show');
-        }
-    });
+const text=["Civil Engineer","Site Engineer","Design Enthusiast"];
+let count=0,index=0,currentText="",letter="";
+(function type(){
+if(count===text.length){count=0;}
+currentText=text[count];
+letter=currentText.slice(0,++index);
+document.getElementById("typing").textContent=letter;
+if(letter.length===currentText.length){
+count++; index=0; setTimeout(type,1500);
+}else{setTimeout(type,100);}
+})();
+
+const sections=document.querySelectorAll('.glass');
+window.addEventListener('scroll',()=>{
+sections.forEach(section=>{
+const sectionTop=section.getBoundingClientRect().top;
+const triggerPoint=window.innerHeight-100;
+if(sectionTop<triggerPoint){section.classList.add('show');}
+});
 });
 </script>
 
