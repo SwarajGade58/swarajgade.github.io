@@ -34,7 +34,7 @@ width:0%;
 z-index:9999;
 }
 
-/* Blueprint Grid Background */
+/* Blueprint Grid */
 body::before{
 content:"";
 position:fixed;
@@ -63,27 +63,36 @@ backdrop-filter:blur(10px);
 z-index:1000;
 }
 
-nav h2{color:#38bdf8;}
+nav h2{
+background:linear-gradient(90deg,#38bdf8,#0ea5e9);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
 nav ul{
 display:flex;
 list-style:none;
 gap:25px;
 }
+
 nav a{
 color:white;
 text-decoration:none;
 transition:0.3s;
 }
+
 nav a:hover{color:#38bdf8;}
+
+.menu-toggle{
+display:none;
+font-size:28px;
+color:#38bdf8;
+cursor:pointer;
+}
 
 /* HERO */
 .hero{
 height:100vh;
-background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-url('https://images.unsplash.com/photo-1503387762-592deb58ef4e');
-background-size:cover;
-background-position:center;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -93,8 +102,11 @@ padding:20px;
 }
 
 .hero h1{
-font-size:50px;
-color:#38bdf8;
+font-size:55px;
+font-weight:800;
+background:linear-gradient(90deg,#38bdf8,#0ea5e9);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 .hero p{
@@ -106,17 +118,18 @@ height:28px;
 
 .hero button{
 margin-top:30px;
-padding:12px 35px;
+padding:14px 40px;
 border:none;
-border-radius:30px;
-background:#38bdf8;
+border-radius:50px;
+background:linear-gradient(135deg,#38bdf8,#0ea5e9);
 color:#0f172a;
 font-weight:600;
 cursor:pointer;
 transition:0.3s;
+box-shadow:0 10px 25px rgba(56,189,248,0.3);
 }
 .hero button:hover{
-transform:scale(1.05);
+transform:scale(1.07);
 }
 
 /* SECTION */
@@ -146,11 +159,19 @@ gap:40px;
 flex-wrap:wrap;
 align-items:center;
 }
+
 .about img{
-width:220px;
-border-radius:50%;
-box-shadow:0 0 25px rgba(56,189,248,0.5);
+width:230px;
+height:230px;
+object-fit:cover;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(56,189,248,0.4);
+transition:0.4s;
 }
+.about img:hover{
+transform:scale(1.05);
+}
+
 .about p{flex:1;}
 
 /* SKILLS */
@@ -166,6 +187,12 @@ padding:8px 15px;
 border-radius:20px;
 border:1px solid #38bdf8;
 font-size:14px;
+transition:0.3s;
+}
+.skills span:hover{
+background:#38bdf8;
+color:#0f172a;
+transform:scale(1.1);
 }
 
 /* PROJECTS */
@@ -176,12 +203,13 @@ gap:25px;
 }
 .projects img{
 width:100%;
-border-radius:15px;
+border-radius:20px;
 transition:0.4s;
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 .projects img:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px #38bdf8;
+transform:translateY(-10px);
+box-shadow:0 15px 35px rgba(56,189,248,0.5);
 }
 
 /* CONTACT */
@@ -206,6 +234,7 @@ transition:0.3s;
 .icon:hover{
 background:#38bdf8;
 color:#0f172a;
+transform:scale(1.1);
 }
 
 /* FOOTER */
@@ -216,39 +245,40 @@ background:#020617;
 margin-top:50px;
 }
 
-/* RESUME POPUP */
-#resumeModal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-#resumeModal img{
-max-width:90%;
-max-height:90%;
-overflow:auto;
-}
-.closeBtn{
-position:absolute;
-top:20px;
-right:40px;
-font-size:35px;
-color:white;
-cursor:pointer;
-}
-
 /* RESPONSIVE */
 @media(max-width:768px){
-.hero h1{font-size:36px;}
-nav ul{display:none;}
-.about{flex-direction:column;text-align:center;}
-section{padding:80px 8%;}
+
+.menu-toggle{
+display:block;
+}
+
+nav ul{
+position:absolute;
+top:70px;
+right:0;
+background:#0f172a;
+flex-direction:column;
+width:200px;
+padding:20px;
+display:none;
+}
+
+nav ul.active{
+display:flex;
+}
+
+.about{
+flex-direction:column;
+text-align:center;
+}
+
+section{
+padding:80px 8%;
+}
+
+.hero h1{
+font-size:38px;
+}
 }
 </style>
 </head>
@@ -259,7 +289,10 @@ section{padding:80px 8%;}
 
 <nav>
 <h2>Swaraj Vikas Gade</h2>
-<ul>
+<div class="menu-toggle" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</div>
+<ul id="navLinks">
 <li><a href="#about">About</a></li>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#contact">Contact</a></li>
@@ -315,33 +348,36 @@ Civil Engineer with Diploma background and currently pursuing BE at DY Patil Sch
 ©️ 2026 Swaraj Vikas Gade | Civil Engineering Portfolio
 </footer>
 
-<!-- Resume Modal -->
-<div id="resumeModal">
-<span class="closeBtn" onclick="closeResume()">×</span>
-<img src="resume.jpg">
-</div>
-
 <script>
-// Typing Effect
+/* FIXED Typing Animation */
 const words=["Civil Engineer","Structural Enthusiast","Site Engineer"];
-let i=0,j=0,current="",isDeleting=false;
-function type(){
-if(i<words.length){
-if(!isDeleting && j<=words[i].length){
-current=words[i].substring(0,j++);
-}
-if(isDeleting && j>=0){
-current=words[i].substring(0,j--);
-}
-document.getElementById("typing").innerHTML=current;
-if(j==words[i].length){isDeleting=true;setTimeout(type,1000);return;}
-if(isDeleting && j==0){isDeleting=false;i++;if(i==words.length)i=0;}
-}
-setTimeout(type,isDeleting?50:100);
-}
-type();
+let wordIndex=0;
+let charIndex=0;
+let isDeleting=false;
+const typing=document.getElementById("typing");
 
-// Scroll reveal
+function typeEffect(){
+const current=words[wordIndex];
+
+if(!isDeleting){
+typing.textContent=current.substring(0,charIndex+1);
+charIndex++;
+if(charIndex===current.length){
+setTimeout(()=>isDeleting=true,1000);
+}
+}else{
+typing.textContent=current.substring(0,charIndex-1);
+charIndex--;
+if(charIndex===0){
+isDeleting=false;
+wordIndex=(wordIndex+1)%words.length;
+}
+}
+setTimeout(typeEffect,isDeleting?50:100);
+}
+typeEffect();
+
+/* Scroll reveal */
 const sections=document.querySelectorAll("section");
 window.addEventListener("scroll",()=>{
 sections.forEach(sec=>{
@@ -351,7 +387,7 @@ sec.classList.add("show");
 });
 });
 
-// Progress Bar
+/* Progress Bar */
 window.addEventListener("scroll",()=>{
 let scrollTop=document.documentElement.scrollTop;
 let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
@@ -359,12 +395,9 @@ let progress=(scrollTop/height)*100;
 document.getElementById("progressBar").style.width=progress+"%";
 });
 
-// Resume Popup
-function openResume(){
-document.getElementById("resumeModal").style.display="flex";
-}
-function closeResume(){
-document.getElementById("resumeModal").style.display="none";
+/* Mobile menu */
+function toggleMenu(){
+document.getElementById("navLinks").classList.toggle("active");
 }
 </script>
 
