@@ -178,21 +178,7 @@ border-radius:20px;
 box-shadow:0 15px 50px rgba(56,189,248,0.5);
 }
 
-.about p{flex:1;}
-
-.skills{
-display:flex;
-flex-wrap:wrap;
-gap:12px;
-margin-top:20px;
-}
-.skills span{
-background:var(--card);
-padding:8px 15px;
-border-radius:20px;
-border:1px solid var(--accent);
-font-size:14px;
-}
+.about p{flex:1;line-height:1.6;}
 
 /* PROJECTS */
 .projects{
@@ -268,6 +254,44 @@ background:#020617;
 margin-top:50px;
 }
 
+/* SKILLS */
+.skills{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:20px;
+}
+.skills span{
+background:var(--card);
+padding:8px 15px;
+border-radius:20px;
+border:1px solid var(--accent);
+font-size:14px;
+}
+
+/* Resume Popup */
+#resumePopup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.85);
+justify-content:center;
+align-items:center;
+z-index:2000;
+overflow:auto;
+padding:20px;
+}
+#resumePopup img{
+max-width:900px;
+width:100%;
+height:auto;
+border-radius:10px;
+box-shadow:0 15px 50px rgba(56,189,248,0.5);
+}
+
 /* MOBILE */
 @media(max-width:768px){
 
@@ -314,6 +338,7 @@ font-size:36px;
 
 <ul id="navLinks">
 <li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
@@ -330,9 +355,25 @@ font-size:36px;
 <div class="about">
 <img src="https://i.ibb.co/fzDzYpDF/798095-DE-7-E1-F-4385-9-E59-3382-BF37015-D.png">
 <p>
-Civil Engineer with Diploma background and currently pursuing BE at DY Patil School of Engineering (SPPU).
+I am a confident and highly motivated Civil Engineering student currently pursuing my Bachelor’s degree at Savitribai Phule Pune University. With a diploma background in Civil Engineering, I have developed both practical site exposure and strong technical fundamentals.
+
+I am a quick learner who is always eager to explore new concepts, tools, and technologies. I believe in doing every task with precision and professionalism, whether it is academic work, site responsibilities, or project planning.
+
+I have working knowledge of basic AutoCAD and a good understanding of construction drawings, estimation fundamentals, and material planning. I am also comfortable using modern digital tools, smartphones, and laptop software efficiently, which helps me adapt quickly to new systems and workflows.
+
+My goal is to continuously upgrade my skills, gain real-world experience, and grow into a technically sound and responsible civil engineer who delivers quality work with confidence and integrity.
 </p>
 </div>
+
+<!-- Resume Button -->
+<div style="margin-top:20px; text-align:center;">
+  <button onclick="showResume()" style="padding:12px 30px; border:none; border-radius:30px; background:var(--accent); color:#0f172a; cursor:pointer; font-weight:600;">View Resume</button>
+</div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills">
+<h2 class="section-title">Skills</h2>
 <div class="skills">
 <span>AutoCAD</span>
 <span>Revit</span>
@@ -380,42 +421,48 @@ Civil Engineer with Diploma background and currently pursuing BE at DY Patil Sch
 </div>
 </section>
 
+<!-- Resume Popup -->
+<div id="resumePopup">
+<span onclick="closeResume()" style="position:absolute; top:20px; right:30px; font-size:36px; color:white; cursor:pointer;">&times;</span>
+<img src="resume.jpg" alt="Resume">
+</div>
+
 <footer>
 ©️ 2026 Swaraj Vikas Gade | Civil Engineering Portfolio
 </footer>
 
 <script>
-/* Typing */
-const words=["Civil Engineer","Structural Enthusiast","Site Engineer"];
+/* Typing Animation */
+const words=["Engineer","Designer","Builder","Innovator"];
 let wordIndex=0,charIndex=0,isDeleting=false;
 const typing=document.getElementById("typing");
 
 function typeEffect(){
-const current=words[wordIndex];
-if(!isDeleting){
-typing.textContent=current.substring(0,charIndex+1);
-charIndex++;
-if(charIndex===current.length){setTimeout(()=>isDeleting=true,1000);}
-}else{
-typing.textContent=current.substring(0,charIndex-1);
-charIndex--;
-if(charIndex===0){isDeleting=false;wordIndex=(wordIndex+1)%words.length;}
-}
-setTimeout(typeEffect,isDeleting?50:100);
+  const current=words[wordIndex];
+  if(!isDeleting){
+    typing.textContent=current.substring(0,charIndex+1);
+    charIndex++;
+    if(charIndex===current.length){setTimeout(()=>isDeleting=true,1000);}
+  }else{
+    typing.textContent=current.substring(0,charIndex-1);
+    charIndex--;
+    if(charIndex===0){isDeleting=false;wordIndex=(wordIndex+1)%words.length;}
+  }
+  setTimeout(typeEffect,isDeleting?50:100);
 }
 typeEffect();
 
 /* Scroll Fade In/Out */
 const sections=document.querySelectorAll("section");
 function reveal(){
-sections.forEach(sec=>{
-const rect=sec.getBoundingClientRect();
-if(rect.top<window.innerHeight-100 && rect.bottom>100){
-sec.classList.add("show");
-}else{
-sec.classList.remove("show");
-}
-});
+  sections.forEach(sec=>{
+    const rect=sec.getBoundingClientRect();
+    if(rect.top<window.innerHeight-100 && rect.bottom>100){
+      sec.classList.add("show");
+    }else{
+      sec.classList.remove("show");
+    }
+  });
 }
 window.addEventListener("scroll",reveal);
 reveal();
@@ -428,6 +475,14 @@ document.body.classList.toggle("light");
 /* Mobile Menu */
 function toggleMenu(){
 document.getElementById("navLinks").classList.toggle("active");
+}
+
+/* Resume Popup */
+function showResume(){
+  document.getElementById('resumePopup').style.display='flex';
+}
+function closeResume(){
+  document.getElementById('resumePopup').style.display='none';
 }
 </script>
 
